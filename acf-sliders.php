@@ -8,6 +8,7 @@ Version: 1.1
 Author: WPPress.net
 Author URI: http://wppress.net
 */
+if ( !defined( 'ABSPATH' )) die(-1); 
 
 class WPPress_ACF_WPPress_Sliders
 {
@@ -20,6 +21,7 @@ class WPPress_ACF_WPPress_Sliders
 	}
 
 	function register_fields() {
+		include_once (dirname(__FILE__).'/slider.class.php');
 		if (class_exists('LS_Sliders')) {
 			include_once ('field-layerslider.php');
 		}
