@@ -34,12 +34,12 @@ abstract class WPPress_ACF_Field extends acf_field
 		$field['disable'] = isset($field['disable']) ? $field['disable'] : false;
 		$field['hide_disabled'] = isset($field['hide_disabled']) ? $field['hide_disabled'] : false;
 		$multiple = '';
-		if ($field['multiple'] == '1') {
+		if ($field['multiple']) {
 			$multiple = ' multiple="multiple" size="5" ';
 			$field['name'].= '[]';
 		}
 		echo '<select id="' . $field['name'] . '" class="' . $field['class'] . '" name="' . $field['name'] . '" ' . $multiple . ' >';
-		if ($field['allow_null'] == '1') {
+		if ($field['allow_null']) {
 			echo '<option value="null"> - Select - </option>';
 		}
 		$sliders = $this->slider_data();
@@ -70,8 +70,8 @@ abstract class WPPress_ACF_Field extends acf_field
 	
 	function create_options($field) {
 		$defaults = array(
-			'multiple' => 0,
-			'allow_null' => 0,
+			'multiple' => false,
+			'allow_null' => false,
 			'default_value' => '',
 			'choices' => '',
 			'disable' => '',
@@ -95,8 +95,8 @@ abstract class WPPress_ACF_Field extends acf_field
 			'type' => 'select',
 			'name' => 'fields[' . $key . '][disable]',
 			'value' => $field['disable'],
-			'multiple' => '1',
-			'allow_null' => '0',
+			'multiple' => false,
+			'allow_null' => false,
 			'choices' => $choices,
 			'layout' => 'horizontal',
 		));
@@ -178,12 +178,12 @@ abstract class WPPress_ACF_Field extends acf_field
 		$field['disable'] = isset($field['disable']) ? $field['disable'] : false;
 		$field['hide_disabled'] = isset($field['hide_disabled']) ? $field['hide_disabled'] : false;
 		$multiple = '';
-		if ($field['multiple'] == '1') {
+		if ($field['multiple']) {
 			$multiple = ' multiple="multiple" size="5" ';
 			$field['name'].= '[]';
 		}
 		echo '<select id="' . $field['name'] . '" class="' . $field['class'] . '" name="' . $field['name'] . '" ' . $multiple . ' >';
-		if ($field['allow_null'] == '1') {
+		if ($field['allow_null']) {
 			echo '<option value="null"> - Select - </option>';
 		}
 		$sliders = $this->slider_data();
@@ -240,27 +240,23 @@ abstract class WPPress_ACF_Field extends acf_field
 			'choices' => $choices,
 			'layout' => 'horizontal',
 		));
-		acf_render_field_setting($field, array(
-			'label' => __('Allow Null?', 'acf') ,
-			'type' => 'radio',
-			'name' => 'fields[' . $key . '][allow_null]',
-			'value' => $field['allow_null'],
-			'choices' => array(
-				1 => __("Yes", 'acf') ,
-				0 => __("No", 'acf') ,
-			) ,
-			'layout' => 'horizontal',
+		// allow_null
+		acf_render_field_setting( $field, array(
+			'label'			=> __('Allow Null?','acf'),
+			'instructions'	=> '',
+			'name'			=> 'allow_null',
+			'type'			=> 'true_false',
+			'ui'			=> 1,
 		));
-		acf_render_field_setting($field, array(
-			'label' => __('Select Multiple?', 'acf') ,
-			'type' => 'radio',
-			'name' => 'fields[' . $key . '][multiple]',
-			'value' => $field['multiple'],
-			'choices' => array(
-				1 => __("Yes", 'acf') ,
-				0 => __("No", 'acf') ,
-			) ,
-			'layout' => 'horizontal',
+		
+		
+		// multiple
+		acf_render_field_setting( $field, array(
+			'label'			=> __('Select multiple values?','acf'),
+			'instructions'	=> '',
+			'name'			=> 'multiple',
+			'type'			=> 'true_false',
+			'ui'			=> 1,
 		));
 		acf_render_field_setting($field, array(
 			'label' => __('Hide disabled Slides?', 'acf') ,
