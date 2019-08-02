@@ -1,0 +1,13 @@
+{
+    "name": "ssovit/acf-sliders",
+    "description": "ACF Slider addon for Advanced Custom Fields",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sovit Tamrakar",
+            "email": "sovit.tamrakar@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
