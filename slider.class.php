@@ -32,7 +32,6 @@ abstract class WPPress_ACF_Field extends acf_field
 	function create_field($field) {
 		$field['multiple'] = isset($field['multiple']) ? $field['multiple'] : false;
 		$field['disable'] = isset($field['disable']) ? $field['disable'] : false;
-		$field['hide_disabled'] = isset($field['hide_disabled']) ? $field['hide_disabled'] : false;
 		$multiple = '';
 		if ($field['multiple']) {
 			$multiple = ' multiple="multiple" size="5" ';
@@ -55,13 +54,9 @@ abstract class WPPress_ACF_Field extends acf_field
 						$selected = 'selected="selected"';
 					}
 				}
-				if (in_array(($key) , $field['disable'])) {
-					if ($field['hide_disabled'] == 0) {
-						echo '<option value="' . $key . '" ' . $selected . ' disabled="disabled">' . $value . '</option>';
-					}
-				} else {
-					echo '<option value="' . $key . '" ' . $selected . '>' . $value . '</option>';
-				}
+				
+				echo '<option value="' . $key . '" ' . $selected . '>' . $value . '</option>';
+				
 			}
 		}
 		
@@ -75,7 +70,6 @@ abstract class WPPress_ACF_Field extends acf_field
 			'default_value' => '',
 			'choices' => '',
 			'disable' => '',
-			'hide_disabled' => 0,
 		);
 		
 		$field = array_merge($defaults, $field);
@@ -137,23 +131,7 @@ abstract class WPPress_ACF_Field extends acf_field
 		));
 		echo '</td>';
 		echo '</tr>';
-		echo '<tr class="field_option field_option_' . $this->name . '">';
-		echo '<td class="label">';
-		echo '<label>' . __("Hide disabled Slides?", 'acf') . '</label>';
-		echo '</td>';
-		echo '<td>';
-		do_action('acf/create_field', array(
-			'type' => 'radio',
-			'name' => 'fields[' . $key . '][hide_disabled]',
-			'value' => $field['hide_disabled'],
-			'choices' => array(
-				1 => __("Yes", 'acf') ,
-				0 => __("No", 'acf') ,
-			) ,
-			'layout' => 'horizontal',
-		));
-		echo '</td>';
-		echo '</tr>';
+		
 	}
 	
 	function format_value($value, $field) {
@@ -176,7 +154,6 @@ abstract class WPPress_ACF_Field extends acf_field
 	function render_field($field) {
 		$field['multiple'] = isset($field['multiple']) ? $field['multiple'] : false;
 		$field['disable'] = isset($field['disable']) ? $field['disable'] : false;
-		$field['hide_disabled'] = isset($field['hide_disabled']) ? $field['hide_disabled'] : false;
 		$multiple = '';
 		if ($field['multiple']) {
 			$multiple = ' multiple="multiple" size="5" ';
@@ -199,13 +176,9 @@ abstract class WPPress_ACF_Field extends acf_field
 						$selected = 'selected="selected"';
 					}
 				}
-				if (in_array(($key) , $field['disable'])) {
-					if ($field['hide_disabled'] == 0) {
-						echo '<option value="' . $key . '" ' . $selected . ' disabled="disabled">' . $value . '</option>';
-					}
-				} else {
-					echo '<option value="' . $key . '" ' . $selected . '>' . $value . '</option>';
-				}
+				
+				echo '<option value="' . $key . '" ' . $selected . '>' . $value . '</option>';
+				
 			}
 		}
 		
@@ -219,7 +192,6 @@ abstract class WPPress_ACF_Field extends acf_field
 			'default_value' => '',
 			'choices' => '',
 			'disable' => '',
-			'hide_disabled' => 0,
 		);
 		
 		$field = array_merge($defaults, $field);
@@ -258,18 +230,7 @@ abstract class WPPress_ACF_Field extends acf_field
 			'type'			=> 'true_false',
 			'ui'			=> 1,
 		));
-		acf_render_field_setting($field, array(
-			'label' => __('Hide disabled Slides?', 'acf') ,
-			
-			'type' => 'radio',
-			'name' => 'fields[' . $key . '][hide_disabled]',
-			'value' => $field['hide_disabled'],
-			'choices' => array(
-				1 => __("Yes", 'acf') ,
-				0 => __("No", 'acf') ,
-			) ,
-			'layout' => 'horizontal',
-		));
+		
 	}
 }
 
