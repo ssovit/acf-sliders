@@ -21,7 +21,8 @@ class WPPress_RevolutionSlider_ACF_Field extends WPPress_ACF_Field
 	 */
 	function slider_output($data = NULL) {
 		ob_start();
-		$rev = RevSliderOutput::putSlider($data);
+		$RevSliderOutput=new RevSliderOutput();
+		$rev = $RevSliderOutput->add_slider_to_stage($data);
 		$slider = ob_get_contents();
 		ob_clean();
 		ob_end_clean();
@@ -35,7 +36,7 @@ class WPPress_RevolutionSlider_ACF_Field extends WPPress_ACF_Field
 	 * @return array id=>label
 	 */
 	function slider_data() {
-		$slider = new RevSlider();
+		$slider = new RevSliderSlider();
 		$sliders = $slider->getArrSlidersShort();
 		$data = array();
 		if (!empty($sliders)) {

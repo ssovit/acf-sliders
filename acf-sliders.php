@@ -4,7 +4,7 @@
 Plugin Name: Advanced Custom Fields: Sliders Field
 Plugin URI: http://wppress.net/acf-slider-fields
 Description: Support for some premium and Free sliders for Advanced Custom Fields
-Version: 1.1.0
+Version: 1.2.0
 Author: WPPress.net
 Author URI: http://wppress.net
 */
