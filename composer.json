@@ -2,6 +2,7 @@
     "name": "ssovit/acf-sliders",
     "description": "ACF Slider addon for Advanced Custom Fields",
     "license": "GPL-2.0+",
+    "type": "wordpress-plugin",
     "authors": [{
         "name": "Sovit Tamrakar",
         "email": "sovit.tamrakar@gmail.com",
